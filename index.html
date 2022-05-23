@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Tool Analysis</title>
+  
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/data.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+
+    <script type='module' src="./script.js"  defer></script>
+    
+    
+</head>
+
+<body>
+    <h1>Charts</h1>
+<div class="wrapper">
+    <select id="chart-select">
+        <option value="high-charts">HighCharts</option>
+        <option value="vega-lite">Vega-Lite</option>
+        <option value="plotly">Plotly</option>
+        <option value="google-charts">Google Charts</option>
+        
+    </select>
+    <div class="container">
+
+    </div>
+</div>
+
+    
+</body>
