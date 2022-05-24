@@ -3,7 +3,7 @@ export default function vega(container){
         
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "data": {
-              "url": "https://raw.githubusercontent.com/pseudodream/ToolAnalysis/main/fewer%20countries%20-%20data_healthexpenditure%20-%20fewer%20countries%20-%20data_healthexpenditure.csv"
+              "url": "https://raw.githubusercontent.com/pseudodream/ToolAnalysis/main/data.csv"
             },
             "width": 500,
             "height": 300,
