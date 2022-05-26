@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8">
-    <title>Tool Analysis</title>
-  
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/data.js"></script>
+  <meta charset="utf-8" />
+  <title>Tool Analysis</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
-   
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-    <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
 
-    
-    <script type='module' src="./script.js"  defer></script>
-    
-    
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+  <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+  <script type="module" src="./script.js" defer></script>
 </head>
 
 <body>
-    <h1>Charts</h1>
-<div class="wrapper">
-    <select id="chart-select">
+  <h1>Charts</h1>
+  <div class="wrapper">
+    <div>
+      <select id="chart-select">
         <option value="high-charts">HighCharts</option>
         <option value="vega-lite">Vega-Lite</option>
         <option value="plotly">Plotly</option>
         <option value="google-charts">Google Charts</option>
-        
-    </select>
-    <div class="container" id="#container">
-
+      </select>
     </div>
-</div>
-
-    
+    <div class="container" id="container"></div>
+  </div>
 </body>

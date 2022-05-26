@@ -9,10 +9,11 @@ import googleCharts from "./googleCharts.js";
 const select=document.querySelector("#chart-select");
 
 select.value="high-charts"
+highCharts(".container");
 select.addEventListener('change',(event)=>{
     var val=select.value;
     //clear the chart first 
-    d3.select(".vega-embed").remove();
+    d3.selectAll("svg > *").remove();
     
     switch(val){
         case("vega-lite"):

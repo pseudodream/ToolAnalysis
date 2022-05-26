@@ -6,16 +6,18 @@ export default function plotlyChart(container) {
 
   function processData(data) {
     var x = [],y = [];
-   var y1=[],y2=[],y3=[];
+        var y1=[],y2=[],y3=[];
+    
+    
+        for (var i = 0; i < data.length; i++) {
+          x.push(data[i]["Location"]);
+          data[i]["VALUE2016"]==null?0: y.push(data[i]["VALUE2016"])
+          data[i]["VALUE2017"]==null?0: y1.push(data[i]["VALUE2017"])
+          data[i]["VALUE2018"]==null?0: y2.push(data[i]["VALUE2018"])
+          data[i]["VALUE2019"]==null?0: y3.push(data[i]["VALUE2019"])
 
 
-    for (var i = 0; i < data.length; i++) {
-      x.push(data[i]["Location"]);
-      y.push(data[i]["VALUE2016"]);
-      y1.push(data[i]["VALUE2017"]);
-      y2.push(data[i]["VALUE2018"]);;
-      y3.push(data[i]["VALUE2019"]);;
-    }
+        }
 
     makePlotly(x, y);
   }
@@ -33,6 +35,6 @@ export default function plotlyChart(container) {
     var layout = {
         title: 'Cost of healthcare 2016',
       };
-    Plotly.newPlot("#container", d,layout);
+    Plotly.newPlot("container", d,layout);
   }
 }

@@ -2,6 +2,7 @@ export default function vega(container){
     var chart={
         
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "usermeta": {"embedOptions": {"renderer": "svg"}},
             "data": {
               "url": "https://raw.githubusercontent.com/pseudodream/ToolAnalysis/main/data.csv"
             },
