@@ -19,22 +19,48 @@ export default function plotlyChart(container) {
 
         }
 
-    makePlotly(x, y);
+        var trace = 
+          {
+              x: x,
+              y: y,
+              type: "bar",
+              name:"2016"
+          }
+
+          var trace1 = 
+          {
+              x: x,
+              y: y1,
+              type: "bar",
+              name:"2017"
+          }
+
+          var trace2 = 
+          {
+              x: x,
+              y: y2,
+              type: "bar",
+              name:"2018"
+          }
+          var trace3 = 
+          {
+              x: x,
+              y: y3,
+              type: "bar",
+              name:"2019"
+          }
+  
+
+
+      var data=[trace,trace1,trace2,trace3]
+  
+      var layout = {
+          title: 'Cost of healthcare',
+          barmode: 'group'
+        };
+      Plotly.newPlot("container", data,layout);
+
   }
 
-  function makePlotly(xval, yval) {
-    var d = [
-        {
-            x: xval,
-            y: yval,
-            type: "bar",
-        }
-
-    ];
-
-    var layout = {
-        title: 'Cost of healthcare 2016',
-      };
-    Plotly.newPlot("container", d,layout);
-  }
+  
 }

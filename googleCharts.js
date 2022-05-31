@@ -1,45 +1,70 @@
-export default function googleCharts(container){
+export default function googleCharts(container) {
+  google.charts.load('upcoming', {'packages': ['vegachart']})
+  google.charts.setOnLoadCallback(drawBasic);
 
-    
+  function drawBasic() {
+    $.get(
+      "./data.csv",
+      function (csvString) {
+        var arrayData = $.csv.toArrays(csvString, {
+          onParseValue: $.csv.hooks.castToScalar,
+        });
+      
+        var dt = google.visualization.arrayToDataTable(arrayData);
+        console.log(dt)
+        var options = {
+          "vegaLite" :{
 
-d3.csv("./data.csv", d3.autoType).then((data) => {
-   
-    console.log(data)
-    processData(data);
-
-  });
-
-  function processData(data){
-    google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
-
-function drawBasic(){
-    var options = {
-        chart: {
-          title: 'Healthcare spendings',
-        },
-        series: {
-          0: {axis: 'MotivationLevel'},
-        },
-        axes: {
-          y: {
-            MotivationLevel: {label: 'Motivation Level (1-10)'},
-          }
-        },
-        hAxis: {
-          title: 'spending',
+         
+          
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "usermeta": {"embedOptions": {"renderer": "svg"}},
+          "data": {
+            "url": "https://raw.githubusercontent.com/pseudodream/ToolAnalysis/main/data.csv"
+          },
+          "width": 500,
+          "height": 300,
+           "columns": 2,
+          "concat": [
+            {
+              "mark": "bar",
+              "encoding": {
+                "x": {"field": "Location", "type": "nominal"},
+                "y": {"field": "VALUE2016", "type": "quantitative"}
+              }
+            },
+             {
+              "mark": "bar",
+              "encoding": {
+                "x": {"field": "Location", "type": "nominal"},
+                "y": {"field": "VALUE2017", "type": "quantitative"}
+              }
+            },
+            {
+              "mark": "bar",
+              "encoding": {
+                "x": {"field": "Location", "type": "nominal"},
+                "y": {"field": "VALUE2018", "type": "quantitative"}
+              }
+            },
+            {
+              "mark": "bar",
+              "encoding": {
+                "x": {"field": "Location", "type": "nominal"},
+                "y": {"field": "VALUE2019", "type": "quantitative"}
+              }
+            }
+          ]
         }
-      };
+        };
 
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('container'));
-      chart.draw(data, options);
-
-
-}
-
-   
-
+        var chart = new google.visualization.VegaChart(
+          document.getElementById("container")
+        );
+        
+        chart.draw(dt, options);
+      },
+      "text"
+    );
   }
-
 }

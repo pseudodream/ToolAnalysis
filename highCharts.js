@@ -37,11 +37,15 @@ export default function highCharts(container){
         }
        
         Highcharts.chart('container', {
+          chart:{
+            type: 'column',
+
+          },
           accessibility: {
             description: 'Healthcare spendings',
             keyboardNavigation:true,
             point: {
-              valueDescriptionFormat: '{point.name}, {point.y}.'
+              valueDescriptionFormat: '{point.value}, {point.xDescription}.'
           }
 
         },
@@ -60,9 +64,18 @@ export default function highCharts(container){
                 }
             },
             series:[{
-                type: 'column',
+                
                 name:"2016",
                 data:y
+            },{
+              name:"2017",
+                data:y1
+            },{
+              name:"2018",
+                data:y2
+            },{
+              name:"2019",
+                data:y3
             }]
         })
     
