@@ -43,10 +43,15 @@ export default function highCharts(container){
           },
           accessibility: {
             description: 'Healthcare spendings',
-            keyboardNavigation:true,
+            keyboardNavigation:{
+              enabled:true,
+
+            },
             point: {
-              valueDescriptionFormat: '{point.value}, {point.xDescription}.'
+              valueDescriptionFormat:'location: {xDescription} spending: {separator} in year: {value}..'
+              
           }
+           
 
         },
             
@@ -64,7 +69,7 @@ export default function highCharts(container){
                 }
             },
             series:[{
-                
+
                 name:"2016",
                 data:y
             },{

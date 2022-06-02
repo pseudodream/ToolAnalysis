@@ -1,5 +1,6 @@
 export default function plotlyChart(container) {
   d3.csv("./data.csv", d3.autoType).then((data) => {
+    console.log(data)
     processData(data);
   });
   //they actually don't have accessibilty features yet

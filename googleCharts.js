@@ -1,70 +1,80 @@
 export default function googleCharts(container) {
-  google.charts.load('upcoming', {'packages': ['vegachart']})
-  google.charts.setOnLoadCallback(drawBasic);
+  d3.csv("./data.csv", d3.autoType).then((data) => {
+    console.log(data);
+    processData(data);
+  });
 
-  function drawBasic() {
-    $.get(
-      "./data.csv",
-      function (csvString) {
-        var arrayData = $.csv.toArrays(csvString, {
-          onParseValue: $.csv.hooks.castToScalar,
-        });
-      
-        var dt = google.visualization.arrayToDataTable(arrayData);
-        console.log(dt)
-        var options = {
-          "vegaLite" :{
+  function processData(data) {
+    google.charts.load("current", { packages: ["corechart", "bar"] });
+    google.charts.setOnLoadCallback(drawBasic);
 
-         
-          
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "usermeta": {"embedOptions": {"renderer": "svg"}},
-          "data": {
-            "url": "https://raw.githubusercontent.com/pseudodream/ToolAnalysis/main/data.csv"
-          },
-          "width": 500,
-          "height": 300,
-           "columns": 2,
-          "concat": [
-            {
-              "mark": "bar",
-              "encoding": {
-                "x": {"field": "Location", "type": "nominal"},
-                "y": {"field": "VALUE2016", "type": "quantitative"}
-              }
-            },
-             {
-              "mark": "bar",
-              "encoding": {
-                "x": {"field": "Location", "type": "nominal"},
-                "y": {"field": "VALUE2017", "type": "quantitative"}
-              }
-            },
-            {
-              "mark": "bar",
-              "encoding": {
-                "x": {"field": "Location", "type": "nominal"},
-                "y": {"field": "VALUE2018", "type": "quantitative"}
-              }
-            },
-            {
-              "mark": "bar",
-              "encoding": {
-                "x": {"field": "Location", "type": "nominal"},
-                "y": {"field": "VALUE2019", "type": "quantitative"}
-              }
-            }
-          ]
+    
+
+    function drawBasic() {
+      var datatable = new google.visualization.DataTable();
+      datatable.addColumn('string', 'Location');
+      datatable.addColumn('number','VALUE2016')
+      datatable.addColumn('number','VALUE2017')
+      datatable.addColumn('number','VALUE2018')
+      datatable.addColumn('number','VALUE2019')
+
+      var x = [],y = [];
+        var y1=[],y2=[],y3=[];
+    
+    
+        for (var i = 0; i < data.length; i++) {
+          x.push(data[i]["Location"]);
+          data[i]["VALUE2016"]==null?0: y.push(data[i]["VALUE2016"])
+          data[i]["VALUE2017"]==null?0: y1.push(data[i]["VALUE2017"])
+          data[i]["VALUE2018"]==null?0: y2.push(data[i]["VALUE2018"])
+          data[i]["VALUE2019"]==null?0: y3.push(data[i]["VALUE2019"])
+
+
         }
-        };
 
-        var chart = new google.visualization.VegaChart(
-          document.getElementById("container")
-        );
+
+
+        var arr=[];
+        for(var i=0;i<x.length/4;i++){
+          var d=[];
+          d.push(x[i]);
+          d.push(y[i]);
+          d.push(y1[i]);
+          d.push(y2[i]);
+          d.push(y3[i]);
+          arr.push(d);
+        }
+
+        console.log(arr)
+
+
+
         
-        chart.draw(dt, options);
-      },
-      "text"
-    );
+
+        datatable.addRows(arr);
+
+      
+
+
+      console.log(datatable)
+
+      var options = {
+        title: 'Healthcare spendings',
+
+        hAxis: {
+          title: 'Location',
+        },
+        vAxis: {
+          title: 'Spending'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('container'));
+
+      chart.draw(datatable, options);
+      
+     
+    }
   }
 }
