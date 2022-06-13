@@ -45,12 +45,18 @@ export default function highCharts(container){
             description: 'Healthcare spendings',
             keyboardNavigation:{
               enabled:true,
+              seriesNavigation:{
+                mode:"serialize"
+
+              }
 
             },
             point: {
               valueDescriptionFormat:'location: {xDescription} spending: {separator} in year: {value}..'
               
-          }
+          },
+          landmarkVerbosity: "one"
+
            
 
         },
